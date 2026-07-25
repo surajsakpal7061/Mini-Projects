@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Chakra+Petch:wght@500;600;700&display=swap');
+
+        :root {
+            --body-shell: #2b2c30;
+            --body-shell-dark: #1e1f22;
+            --key-num: #3d3f44;
+            --key-num-hi: #484a50;
+            --key-op: #c9782f;
+            --key-op-hi: #db8938;
+            --key-eq: #4f7a5c;
+            --key-eq-hi: #5c8c6a;
+            --lcd-bg: #cddac2;
+            --lcd-bg-dark: #b9c9ab;
+            --lcd-ink: #1f2a1a;
+            --lcd-ink-dim: rgba(31, 42, 26, 0.35);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            background: radial-gradient(circle at 30% 20%, #3a3b40, #17181a 75%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Chakra Petch', sans-serif;
+            padding: 24px;
+        }
+
+        .calculator {
+            width: 320px;
+            background: linear-gradient(160deg, var(--body-shell), var(--body-shell-dark));
+            border-radius: 22px;
+            padding: 22px 18px 26px;
+            box-shadow:
+                0 30px 60px -20px rgba(0, 0, 0, 0.7),
+                0 2px 0 rgba(255, 255, 255, 0.04) inset,
+                0 -2px 12px rgba(0, 0, 0, 0.5) inset;
+            position: relative;
+        }
+
+        .calculator::before {
+            position: absolute;
+            top: -11px;
+            left: 24px;
+            font-size: 9px;
+            letter-spacing: 2px;
+            color: #8a8b90;
+            background: var(--body-shell-dark);
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .screen-frame {
+            background: var(--body-shell-dark);
+            border-radius: 12px;
+            padding: 6px;
+            margin-bottom: 18px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5) inset;
+        }
+
+        input[type="Number"] {
+            width: 100%;
+            border: none;
+            outline: none;
+            background: linear-gradient(180deg, var(--lcd-bg), var(--lcd-bg-dark));
+            color: var(--lcd-ink);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 34px;
+            text-align: right;
+            padding: 18px 14px;
+            border-radius: 8px;
+            letter-spacing: 1px;
+            -moz-appearance: textfield;
+            box-shadow:
+                0 1px 0 rgba(255, 255, 255, 0.3) inset,
+                0 -6px 10px rgba(0, 0, 0, 0.06) inset;
+            text-shadow: 0 0 8px var(--lcd-ink-dim);
+        }
+
+        input[type="Number"]::-webkit-outer-spin-button,
+        input[type="Number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input:disabled {
+            opacity: 1;
+            cursor: default;
+        }
+
+        .pad {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        button {
+            border: none;
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 600;
+            font-size: 18px;
+            color: #eceef0;
+            border-radius: 10px;
+            padding: 16px 0;
+            cursor: pointer;
+            background: var(--key-num);
+            box-shadow:
+                0 3px 0 rgba(0, 0, 0, 0.35),
+                0 1px 0 rgba(255, 255, 255, 0.06) inset;
+            transition: transform 0.05s ease, box-shadow 0.05s ease, background 0.15s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        button:hover {
+            background: var(--key-num-hi);
+        }
+
+        button:active {
+            transform: translateY(3px);
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0.35), 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+        }
+
+        .numbers {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        #btn-0 {
+            grid-column: span 3;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 10px;
+        }
+
+        .operators {
+            display: grid;
+            grid-template-rows: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .operators button,
+        #equals {
+            background: var(--key-op);
+        }
+
+        .operators button:hover {
+            background: var(--key-op-hi);
+        }
+
+        #equals {
+            background: var(--key-eq);
+            grid-column: span 3;
+            margin-top: 10px;
+            font-size: 20px;
+            width: 18rem;
+        }
+
+        #equals:hover {
+            background: var(--key-eq-hi);
+        }
+
+        .utility-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .utility-row button {
+            background: #5a5c62;
+            font-size: 15px;
+        }
+
+        .utility-row button:hover {
+            background: #666870;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calculator">
+        <div class="screen-frame">
+            <input type="Number" id="display" value="0" disabled>
+        </div>
+
+        <div class="utility-row">
+            <button id="Clear">AC</button>
+            <button id="Back">DEL</button>
+            <button id="Percent">%</button>
+        </div>
+
+        <div class="layout">
+            <div class="numbers">
+                <button class="btn" id="btn-7" value="7">7</button>
+                <button class="btn" id="btn-8" value="8">8</button>
+                <button class="btn" id="btn-9" value="9">9</button>
+                <button class="btn" id="btn-4" value="4">4</button>
+                <button class="btn" id="btn-5" value="5">5</button>
+                <button class="btn" id="btn-6" value="6">6</button>
+                <button class="btn" id="btn-1" value="1">1</button>
+                <button class="btn" id="btn-2" value="2">2</button>
+                <button class="btn" id="btn-3" value="3">3</button>
+                <button class="btn" id="btn-0" value="0">0</button>
+                <button class="btn" id="btn-dot" value=".">.</button>
+            </div>
+            <div class="operators">
+                <button id="/">÷</button>
+                <button id="*">×</button>
+                <button id="-">−</button>
+                <button id="+">+</button>
+            </div>
+        </div>
+        <button id="equals">=</button>
+    </div>
+    <script src="script2.js"></script>
+</body>
+
+</html>
