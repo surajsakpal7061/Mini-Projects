@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #container {
+            width: 500px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        #question {
+            font-size: 22px;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+
+        #options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        #options button {
+            width: 100%;
+            padding: 13px 15px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            text-align: left;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        #options button:hover {
+            background-color: #f0f0f0;
+            border-color: #888;
+        }
+
+        #options button:active {
+            transform: scale(0.98);
+        }
+
+        #next {
+            margin-top: 25px;
+            width: 100%;
+            padding: 12px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #next:hover {
+            background-color: #555;
+        }
+
+        #score {
+            position: fixed;
+            top: 20px;
+            right: 25px;
+
+            background-color: white;
+            padding: 10px 18px;
+
+            border: 1px solid #ddd;
+            border-radius: 6px;
+
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #scoreValue {
+            color: #555;
+            margin-left: 5px;
+        }
+
+        @media (max-width: 550px) {
+            #container {
+                width: 90%;
+                padding: 20px;
+            }
+
+            #question {
+                font-size: 19px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+
+        <div id="question"></div>
+
+        <div id="options">
+            <button id="option-1"></button>
+            <button id="option-2"></button>
+            <button id="option-3"></button>
+            <button id="option-4"></button>
+        </div>
+
+        <button id="next">Next</button>
+
+    </div>
+
+    <div id="score">
+        Score: <span id="scoreValue">0</span>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
