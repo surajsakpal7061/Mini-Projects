@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aesthetic To-Do List</title>
+    <!-- Importing Google Fonts for clean typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <script src="script.js" defer></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Bright, clean aesthetic background image with a soft gradient overlay */
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(240, 240, 250, 0.4)),
+                url('https://images.unsplash.com/photo-1518655048521-f130df041f66?q=80&w=2000&auto=format&fit=crop') no-repeat center center/cover;
+            background-attachment: fixed;
+            color: #2d3748;
+            padding: 20px;
+        }
+
+
+        .app-card {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 24px;
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 640px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+        }
+
+        .app-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: #1a202c;
+            text-align: center;
+            letter-spacing: -0.5px;
+        }
+
+        .input-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 14px 18px;
+            border: 1px solid rgba(200, 200, 220, 0.5);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.8);
+            outline: none;
+            font-size: 0.95rem;
+            color: #2d3748;
+            transition: all 0.2s ease;
+        }
+
+        input[type="text"]::placeholder {
+            color: #a0aec0;
+        }
+
+        input[type="text"]:focus {
+            background: #ffffff;
+            border-color: #a78bfa;
+            box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.15);
+        }
+
+        button#addTask {
+            padding: 14px 20px;
+            border: none;
+            border-radius: 14px;
+            background: #8b5cf6;
+            color: white;
+            font-weight: 500;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.25);
+        }
+
+        button#addTask:hover {
+            background: #7c3aed;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(139, 92, 246, 0.35);
+        }
+
+        button#addTask:active {
+            transform: translateY(0);
+        }
+
+
+        .show-tasks {
+            width: 100%;
+        }
+
+        .deletebtn {
+            padding: .8rem 2rem;
+            background-color: white;
+            color: black;
+            border-radius: 5rem;
+            margin: .5rem;
+        }
+
+        .completedbtn {
+            padding: .8rem 2rem;
+            background-color: white;
+            color: black;
+            border-radius: 5rem;
+        }
+
+        ul#ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        ul#ul li {
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+            transition: transform 0.2s ease;
+        }
+
+        ul#ul li:hover {
+            transform: translateX(4px);
+            background: rgba(255, 255, 255, 0.9);
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="app-card">
+        <h1 class="app-title">My Tasks</h1>
+
+        <div class="input-container">
+            <input type="text" id="taskInput" placeholder="Add a new task...">
+            <button id="addTask">Add</button>
+
+        </div>
+        <p id="information"></p>
+        <div class="show-tasks">
+            <ul id="ul">
+
+            </ul>
+        </div>
+    </main>
+
+
+</body>
+
+</html>
