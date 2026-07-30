@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: #f5f6fa;
+            color: #222;
+            padding: 40px 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        /* Heading */
+        .container::before {
+            content: "My Notes";
+            display: block;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        /* Add Notes Area */
+        .main-area {
+            background: white;
+            padding: 20px;
+            border-radius: 14px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+        }
+
+        #title {
+            width: 100%;
+            height: 50px;
+            resize: vertical;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 16px;
+            font-family: inherit;
+            outline: none;
+            margin-bottom: 15px;
+        }
+
+        #title:focus {
+            border-color: #6c63ff;
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
+        }
+
+        #notesTextarea {
+            width: 100%;
+            height: 150px;
+            resize: vertical;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 16px;
+            font-family: inherit;
+            outline: none;
+            margin-bottom: 15px;
+        }
+
+        #notesTextarea:focus {
+            border-color: #6c63ff;
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
+        }
+
+        #notesTextarea::placeholder {
+            color: #999;
+        }
+
+        #addNotes {
+            border: none;
+            background: #6c63ff;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        #addNotes:hover {
+            background: #574fd6;
+            transform: translateY(-1px);
+        }
+
+        /* Notes Section */
+        .showNotes {
+            width: 100%;
+        }
+
+        #Notes {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        /* Individual Note */
+        #Notes li {
+            background: white;
+            min-height: 160px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+            border-left: 5px solid #6c63ff;
+            font-size: 16px;
+            line-height: 1.6;
+            word-wrap: break-word;
+            position: relative;
+        }
+
+        /* Empty notes message */
+        #Notes:empty::before {
+            content: "No notes yet. Add your first note above.";
+            display: block;
+            grid-column: 1 / -1;
+            text-align: center;
+            color: #999;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            body {
+                padding: 25px 15px;
+            }
+
+            .container::before {
+                font-size: 26px;
+            }
+
+            #Notes {
+                grid-template-columns: 1fr;
+            }
+
+            .main-area {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="main-area">
+            <input type="text" id="title" placeholder="Write your title here...">
+            <textarea id="notesTextarea" placeholder="Write your note here..."></textarea>
+
+            <button id="addNotes">Add Notes</button>
+        </div>
+
+        <div class="showNotes">
+            <ul id="Notes">
+
+            </ul>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
